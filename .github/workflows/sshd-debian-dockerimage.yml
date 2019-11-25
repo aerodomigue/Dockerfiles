@@ -1,4 +1,4 @@
-name: Build docker image sshd-fedora
+name: Build docker image sshd-debian
 
 on:
   push:
@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run:  docker build ./sshd/fedora/ -t lucasfabre/sshd-fedora -f ./sshd/fedora/Dockerfile  
+      run:  docker build ./sshd/debian/ -t lucasfabre/sshd-debian -f ./sshd/debian/Dockerfile  
     - name: Docker login
       run:  docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}"
     - name: Tag the docker image
-      run:  docker tag lucasfabre/sshd-fedora lucasfabre/sshd-fedora:latest
+      run:  docker tag lucasfabre/sshd-debian lucasfabre/sshd-debian:latest
     - name: Push the docker image
-      run:  docker push lucasfabre/sshd-fedora:latest
+      run:  docker push lucasfabre/sshd-debian:latest
